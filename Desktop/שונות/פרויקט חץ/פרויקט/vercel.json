@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "buildCommand": "cd client && npm install && npm run build",
+  "outputDirectory": "client/build",
+  "env": {
+    "NODE_ENV": "production",
+    "CORS_ORIGIN": "@cors_origin"
+  },
+  "functions": {
+    "server/**/*.js": {
+      "runtime": "nodejs18.x",
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  },
+  "routes": [
+    {
+      "src": "^/api/(.*)",
+      "dest": "server/src/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "client/build/index.html"
+    }
+  ]
+}
